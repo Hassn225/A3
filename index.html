@@ -1,74 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Add Two Numbers to List</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      margin-top: 50px;
-    }
-
-    input[type="number"] {
-      padding: 10px;
-      font-size: 16px;
-      width: 120px;
-      margin: 5px;
-    }
-
-    button {
-      padding: 10px 20px;
-      font-size: 16px;
-      margin: 10px;
-      cursor: pointer;
-    }
-
-    ul {
-      margin-top: 20px;
-      list-style-type: decimal;
-    }
-
-    li {
-      font-size: 18px;
-      margin: 5px 0;
-    }
-  </style>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Javascript</title>
 </head>
 <body>
+<button onclick="changeColor('pink')">Pink</button>
+<button onclick="changeColor('yellow')">Yellow</button>
+<h2> Add two numbers</h2>
+<input type="text" id="num1"><br>
+<input type="text" id="num2"><br>
+<button onclick="addNumb()">Add Numbers</button> <br>
+<button onclick="subNumb()">Subtract Numbers</button> <br>
 
-  <h1>Add Two Numbers and Display Sum</h1>
+<p id="result"></p>
 
-  <input type="number" id="number1" placeholder="First number" />
-  <input type="number" id="number2" placeholder="Second number" />
-  <br>
-  <button onclick="addNumbers()">Add</button>
+<script type="text/javascript">
 
-  <ul id="numberList"></ul>
+	function changeColor(color){
+		document.body.style.backgroundColor = color;
+			}
+	function addNumb()
+	{
+		let x = parseFloat(document.getElementById('num1').value);
+		let y = parseFloat(document.getElementById('num2').value);
+		let z = x + y;
+		document.getElementById('result').innerText = "Result: " + z;
+	}
 
-  <script>
-    function addNumbers() {
-      const num1 = document.getElementById('number1').value.trim();
-      const num2 = document.getElementById('number2').value.trim();
+function subNumb()
+	{
+		let x = parseFloat(document.getElementById('num1').value);
+		let y = parseFloat(document.getElementById('num2').value);
+		let z = x - y;
+		document.getElementById('result').innerText = "Result: " + z;
+	}
+		
 
-      if (num1 === '' || num2 === '') {
-        alert('Please enter both numbers');
-        return;
-      }
-
-      const sum = Number(num1) + Number(num2);
-
-      const list = document.getElementById('numberList');
-      const listItem = document.createElement('li');
-      listItem.textContent = `Sum: ${sum}`;
-      list.appendChild(listItem);
-
-      // Clear inputs
-      document.getElementById('number1').value = '';
-      document.getElementById('number2').value = '';
-      document.getElementById('number1').focus();
-    }
-  </script>
-
+</script>
 </body>
 </html>
