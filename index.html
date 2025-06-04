@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Number List</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    input[type="number"] {
+      padding: 10px;
+      font-size: 16px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+    ul {
+      margin-top: 20px;
+      list-style-type: decimal;
+    }
+    li {
+      font-size: 18px;
+      margin: 5px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Add Numbers to List</h1>
+
+  <input type="number" id="numberInput" placeholder="Enter a number" />
+  <button onclick="addNumber()">Add</button>
+
+  <ul id="numberList"></ul>
+
+  <script>
+    function addNumber() {
+      const input = document.getElementById('numberInput');
+      const number = input.value.trim();
+
+      if (number === '') {
+        alert('Please enter a number');
+        return;
+      }
+
+      const list = document.getElementById('numberList');
+      const listItem = document.createElement('li');
+      listItem.textContent = number;
+      list.appendChild(listItem);
+
+      input.value = '';
+      input.focus();
+    }
+  </script>
+
+</body>
+</html>
