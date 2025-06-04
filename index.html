@@ -1,43 +1,138 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Javascript</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JavaScript Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 40px;
+      background-color: #f4f4f4;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    input {
+      padding: 10px;
+      margin: 8px;
+      width: 220px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin: 8px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      background-color: #007BFF;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .color-btn {
+      background-color: #ffc107;
+      color: black;
+    }
+
+    .color-btn:hover {
+      background-color: #e0a800;
+    }
+
+    #result {
+      font-size: 20px;
+      margin-top: 20px;
+      font-weight: bold;
+    }
+
+    #historyList {
+      margin-top: 30px;
+      list-style-type: disc;
+      padding-left: 40px;
+      text-align: left;
+      display: inline-block;
+    }
+
+    li {
+      font-size: 18px;
+      margin: 5px 0;
+    }
+  </style>
 </head>
 <body>
-<button onclick="changeColor('pink')">Pink</button>
-<button onclick="changeColor('yellow')">Yellow</button>
-<h2> Add two numbers</h2>
-<input type="text" id="num1"><br>
-<input type="text" id="num2"><br>
-<button onclick="addNumb()">Add Numbers</button> <br>
-<button onclick="subNumb()">Subtract Numbers</button> <br>
 
-<p id="result"></p>
+  <button class="color-btn" onclick="changeColor('pink')">Pink</button>
+  <button class="color-btn" onclick="changeColor('yellow')">Yellow</button>
 
-<script type="text/javascript">
+  <h2>Add or Subtract Two Numbers</h2>
 
-	function changeColor(color){
-		document.body.style.backgroundColor = color;
-			}
-	function addNumb()
-	{
-		let x = parseFloat(document.getElementById('num1').value);
-		let y = parseFloat(document.getElementById('num2').value);
-		let z = x + y;
-		document.getElementById('result').innerText = "Result: " + z;
-	}
+  <input type="text" id="num1" placeholder="Enter first number"><br>
+  <input type="text" id="num2" placeholder="Enter second number"><br>
 
-function subNumb()
-	{
-		let x = parseFloat(document.getElementById('num1').value);
-		let y = parseFloat(document.getElementById('num2').value);
-		let z = x - y;
-		document.getElementById('result').innerText = "Result: " + z;
-	}
-		
+  <button onclick="addNumb()">Add Numbers</button>
+  <button onclick="subNumb()">Subtract Numbers</button>
 
-</script>
+  <p id="result"></p>
+
+  <ul id="historyList">
+    <!-- Operations will be added here -->
+  </ul>
+
+  <script>
+    function changeColor(color) {
+      document.body.style.backgroundColor = color;
+    }
+
+    function addNumb() {
+      const x = parseFloat(document.getElementById('num1').value);
+      const y = parseFloat(document.getElementById('num2').value);
+
+      if (isNaN(x) || isNaN(y)) {
+        document.getElementById('result').innerText = "❌ Please enter valid numbers!";
+        return;
+      }
+
+      const z = x + y;
+      const resultText = `✅ Result: ${z}`;
+      document.getElementById('result').innerText = resultText;
+
+      addToHistory(`${x} + ${y} = ${z}`);
+    }
+
+    function subNumb() {
+      const x = parseFloat(document.getElementById('num1').value);
+      const y = parseFloat(document.getElementById('num2').value);
+
+      if (isNaN(x) || isNaN(y)) {
+        document.getElementById('result').innerText = "❌ Please enter valid numbers!";
+        return;
+      }
+
+      const z = x - y;
+      const resultText = `✅ Result: ${z}`;
+      document.getElementById('result').innerText = resultText;
+
+      addToHistory(`${x} - ${y} = ${z}`);
+    }
+
+    function addToHistory(text) {
+      const list = document.getElementById('historyList');
+      const li = document.createElement('li');
+      li.textContent = text;
+      list.appendChild(li);
+    }
+  </script>
+
 </body>
 </html>
